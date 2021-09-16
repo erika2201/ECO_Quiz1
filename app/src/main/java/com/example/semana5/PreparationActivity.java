@@ -14,6 +14,9 @@ public class PreparationActivity extends AppCompatActivity {
     private CheckBox checkBox1Prepa, checkBox2Prepa, checkBox3Prepa;
     private Button buttonPrepa;
 
+    private String userName, userCod;
+    private int levelPrepa;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,11 +29,35 @@ public class PreparationActivity extends AppCompatActivity {
         checkBox3Prepa = findViewById(R.id.checkBox3Prepa);
         buttonPrepa = findViewById(R.id.buttonPrepa);
 
+        userName = getIntent().getExtras().getString("nombre");
+        userCod = getIntent().getExtras().getString("código");
+
+        levelPrepa = 0;
+
         //De preparation a evaluation
         buttonPrepa.setOnClickListener(
                 (v) ->{
+                    calLevel();
                     Intent i = new Intent(this, EvaluationActivity.class);
+                    i.putExtra("nombre2",userName);
+                    i.putExtra("código2",userCod);
+                    i.putExtra("valores",levelPrepa);
                     startActivity(i);
                 });
+    }
+
+    public void calLevel (){
+        if (checkBox1Prepa.isChecked()){
+            levelPrepa = levelPrepa+1;
+        }
+
+        if (checkBox2Prepa.isChecked()){
+            levelPrepa = levelPrepa+3;
+        }
+
+        if (checkBox3Prepa.isChecked()){
+            levelPrepa = levelPrepa+0;
+        }
+
     }
 }
