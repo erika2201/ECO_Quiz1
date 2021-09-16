@@ -34,6 +34,7 @@ public class PreparationActivity extends AppCompatActivity {
 
         levelPrepa = 0;
 
+        changeColorButton();
         //De preparation a evaluation
         buttonPrepa.setOnClickListener(
                 (v) ->{
@@ -43,6 +44,7 @@ public class PreparationActivity extends AppCompatActivity {
                     i.putExtra("código2",userCod);
                     i.putExtra("valores",levelPrepa);
                     startActivity(i);
+                    finish();
                 });
     }
 
@@ -58,6 +60,36 @@ public class PreparationActivity extends AppCompatActivity {
         if (checkBox3Prepa.isChecked()){
             levelPrepa = levelPrepa+0;
         }
+    }
 
+    public void changeColorButton(){
+        buttonPrepa.setEnabled(false);
+        buttonPrepa.setBackgroundResource(R.drawable.editbuttonbackground2);
+        new Thread(
+                ()->{
+                    while(true){
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        if(checkBox1Prepa.isChecked() || checkBox2Prepa.isChecked() || checkBox3Prepa.isChecked()){
+                            runOnUiThread(
+                                    ()->{
+                                        buttonPrepa.setEnabled(true);
+                                        buttonPrepa.setBackgroundResource(R.drawable.editbuttonbackground);
+                                    });
+                        }else{
+                            runOnUiThread(
+                                    ()->{
+                                        buttonPrepa.setEnabled(false);
+                                        buttonPrepa.setBackgroundResource(R.drawable.editbuttonbackground2);
+                                    });
+                        }
+                    }
+                }
+
+        ).start();
     }
 }

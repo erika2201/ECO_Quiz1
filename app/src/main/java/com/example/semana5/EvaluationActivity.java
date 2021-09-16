@@ -37,6 +37,7 @@ public class EvaluationActivity extends AppCompatActivity {
         levelEval = 0;
         totalLevel = 0;
 
+        changeColorButton();
         //De evaluation a Main
         buttonEval.setOnClickListener(
                 (v) ->{
@@ -68,5 +69,36 @@ public class EvaluationActivity extends AppCompatActivity {
         String userInfo = userName + "\n";
         String infoActual = preferences.getString("usuario", "");
         preferences.edit().putString("usuario", infoActual + userInfo).apply();
+    }
+
+    public void changeColorButton(){
+        buttonEval.setEnabled(false);
+        buttonEval.setBackgroundResource(R.drawable.editbuttonbackground2);
+        new Thread(
+                ()->{
+                    while(true){
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        if(checkBox1Eval.isChecked() || checkBox2Eval.isChecked() || checkBox3Eval.isChecked()){
+                            runOnUiThread(
+                                    ()->{
+                                        buttonEval.setEnabled(true);
+                                        buttonEval.setBackgroundResource(R.drawable.editbuttonbackground);
+                                    });
+                        }else{
+                            runOnUiThread(
+                                    ()->{
+                                        buttonEval.setEnabled(false);
+                                        buttonEval.setBackgroundResource(R.drawable.editbuttonbackground2);
+                                    });
+                        }
+                    }
+                }
+
+        ).start();
     }
 }
