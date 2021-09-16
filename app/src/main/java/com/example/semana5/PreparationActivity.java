@@ -60,6 +60,7 @@ public class PreparationActivity extends AppCompatActivity {
         if (checkBox3Prepa.isChecked()){
             levelPrepa = levelPrepa+0;
         }
+
     }
 
     public void changeColorButton(){

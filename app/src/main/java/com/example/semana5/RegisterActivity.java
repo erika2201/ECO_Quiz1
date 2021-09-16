@@ -31,9 +31,6 @@ public class RegisterActivity extends AppCompatActivity {
         editTextCod = findViewById(R.id.editTextCod);
         buttonRegister = findViewById(R.id.buttonRegister);
 
-
-        //SharedPreferences sp1 = getSharedPreferences("name",MODE_PRIVATE);
-
         //De register a preparation
         buttonRegister.setOnClickListener(
                 (v) ->{

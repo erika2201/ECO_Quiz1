@@ -34,12 +34,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //SharedPreferences sp = getSharedPreferences("name",MODE_PRIVATE);
 
         //Texto con nombre
-        //textViewMain.setText(sp.getString("name","estudiante")+":");
         saveInfo();
-
     }
 
     public void saveInfo (){

@@ -31,7 +31,7 @@ public class EvaluationActivity extends AppCompatActivity {
         buttonEval = findViewById(R.id.buttonEval);
 
         userName = getIntent().getExtras().getString("nombre2");
-       // userCod = getIntent().getExtras().getString("código2");
+        userCod = getIntent().getExtras().getString("código2");
         levelPrepa = getIntent().getExtras().getInt("valores");
 
         levelEval = 0;
@@ -66,7 +66,7 @@ public class EvaluationActivity extends AppCompatActivity {
 
     private void saveInfo() {
         SharedPreferences preferences = getSharedPreferences("datos", MODE_PRIVATE);
-        String userInfo = userName + "\n";
+        String userInfo = userName + ":    " + totalLevel + "\n";
         String infoActual = preferences.getString("usuario", "");
         preferences.edit().putString("usuario", infoActual + userInfo).apply();
     }
